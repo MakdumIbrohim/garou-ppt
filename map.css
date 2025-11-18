@@ -7,6 +7,7 @@ body {
 #game-area {
   position: relative;
 }
+
 #character img {
   width: 100px;
   height: 100px;
@@ -33,13 +34,19 @@ body {
 
 #obstacle {
   position: absolute;
-  top: 100px;
+  top: 110px;
   left: 0;
-  width: 100px;
-  height: 20px;
+  width: 100vh;
+  height: 100vh;
   background: #06d317;
-  transform: skewX(-15deg);
+  transform: rotate(20deg);
+  transform-origin: top left;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
 }
+
 
 .obstacle {
   width: 50px;
