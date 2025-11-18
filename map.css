@@ -1,4 +1,23 @@
-.character img {
+#character img {
   width: 100px;
   height: 100px;
+}
+
+.jump-btn {
+  background: none;
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.jump-btn:hover {
+  background: #f0f0f0;
+}
+
+.jump-btn svg {
+  display: block;
 }
