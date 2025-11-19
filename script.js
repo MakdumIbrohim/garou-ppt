@@ -15,7 +15,7 @@ moveCharacter();
 jumpButton.addEventListener('click', () => {
   if (!isJumping) {
     isJumping = true;
-    character.style.transform = 'translateY(-150px) rotate(20deg)';
+    character.style.transform = 'translateY(-100px) rotate(20deg)';
     setTimeout(() => {
       character.style.transform = 'rotate(20deg)';
       isJumping = false;
