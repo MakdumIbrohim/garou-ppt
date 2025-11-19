@@ -14,7 +14,7 @@ body {
 #character {
   position: absolute;
   left: 0;
-  bottom: 500px;
+  bottom: 100px;
   z-index: 10;
 }
 
@@ -52,7 +52,7 @@ body {
 
 #obstacle {
   position: absolute;
-  top: 61px;
+  top: 90px;
   left: -50px;
   width: 150vw;
   height: 150vh;
