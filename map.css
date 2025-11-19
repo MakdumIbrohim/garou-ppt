@@ -28,6 +28,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: fixed;
+  right: 20px;
+  bottom: 200px;
 }
 
 .jump-btn:hover {
@@ -61,4 +64,17 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+@media (max-width: 768px) {
+  .jump-btn {
+    padding: 8px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  #character img {
+    width: 80px;
+    height: 80px;
+  }
 }
