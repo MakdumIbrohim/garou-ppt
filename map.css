@@ -14,7 +14,7 @@ body {
 #character {
   position: absolute;
   left: 0;
-  bottom: 100px;
+  bottom: 200px;
   z-index: 10;
 }
 
