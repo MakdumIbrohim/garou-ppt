@@ -7,12 +7,15 @@ body {
 
 #game-area {
   position: relative;
+  width: 100vw;
+  height: 100vh;
 }
 
 #character {
   position: absolute;
   left: 0;
   bottom: 0;
+  z-index: 10;
 }
 
 #character img {
