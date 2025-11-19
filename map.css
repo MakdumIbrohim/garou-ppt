@@ -12,6 +12,11 @@ body {
 #character img {
   width: 100px;
   height: 100px;
+  transform: rotate(20deg);
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
 }
 
 .jump-btn {
@@ -35,8 +40,8 @@ body {
 
 #obstacle {
   position: absolute;
-  top: 110px;
-  left: 0;
+  top: 61px;
+  left: -50px;
   width: 150vw;
   height: 150vh;
   background: #06d317;
