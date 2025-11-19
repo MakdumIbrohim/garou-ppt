@@ -1,11 +1,24 @@
 const character = document.getElementById('character');
 const jumpButton = document.getElementById('jump-button');
 
+let position = 0;
+let isJumping = false;
+
+function moveCharacter() {
+  position += 2; // kecepatan berjalan
+  character.style.left = position + 'px';
+  requestAnimationFrame(moveCharacter);
+}
+
+moveCharacter();
+
 jumpButton.addEventListener('click', () => {
-  if (!character.classList.contains('jumping')) {
-    character.classList.add('jumping');
+  if (!isJumping) {
+    isJumping = true;
+    character.style.transform = 'translateY(-150px) rotate(20deg)';
     setTimeout(() => {
-      character.classList.remove('jumping');
+      character.style.transform = 'rotate(20deg)';
+      isJumping = false;
     }, 500);
   }
 });

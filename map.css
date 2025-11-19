@@ -13,7 +13,6 @@ body {
   position: absolute;
   left: 0;
   bottom: 0;
-  animation: walk 10s linear infinite;
 }
 
 #character img {
@@ -24,20 +23,6 @@ body {
   -moz-transform: rotate(20deg);
   -ms-transform: rotate(20deg);
   -o-transform: rotate(20deg);
-}
-
-@keyframes walk {
-  0% { left: 0; }
-  100% { left: calc(100vw - 100px); }
-}
-
-.character.jumping {
-  animation: jump 0.5s ease;
-}
-
-@keyframes jump {
-  0%, 100% { bottom: 0; }
-  50% { bottom: 150px; }
 }
 
 .jump-btn {
