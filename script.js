@@ -5,7 +5,7 @@ let position = 0;
 let isJumping = false;
 
 function moveCharacter() {
-  position += 2; // kecepatan berjalan
+  position += 2; 
   character.style.left = position + 'px';
   requestAnimationFrame(moveCharacter);
 }
