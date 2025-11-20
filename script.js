@@ -142,12 +142,9 @@ function gameLoop(timestamp) {
     }
   }
 
-// Fisika lompatan
   if (isJumping) {
     char.vy += GRAVITY * dt;
     char.yOffset += char.vy * dt;
-
-    char.x += HORIZ_JUMP_SPEED * dt;
 
     if (char.yOffset <= 0) {
       char.yOffset = 0;
@@ -204,6 +201,9 @@ function gameLoop(timestamp) {
       lastTimestamp = null;
       spawnTimer = 0;
       cloudTimer = 0;
+      characterEl.style.left = char.x + "px";
+      const baseBottom = GROUND_BASE - char.x * SLOPE_TAN;
+      characterEl.style.bottom = baseBottom + char.yOffset + "px";
       return;
     }
   }
