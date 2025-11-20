@@ -142,13 +142,40 @@ function gameLoop() {
 
 gameLoop();
 
+// Sound Effect using Web Audio API
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playJumpSound() {
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  const oscillator = audioCtx.createOscillator();
+  const gainNode = audioCtx.createGain();
+
+  oscillator.type = 'sine';
+  oscillator.frequency.setValueAtTime(150, audioCtx.currentTime);
+  oscillator.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.1);
+
+  gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+  gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.1);
+
+  oscillator.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+
+  oscillator.start();
+  oscillator.stop(audioCtx.currentTime + 0.1);
+}
+
 jumpButton.addEventListener('click', () => {
   if (!isJumping) {
     isJumping = true;
+    playJumpSound();
     character.style.transform = 'translateY(-150px)'; // Jump higher
     setTimeout(() => {
       character.style.transform = '';
-      isJumping = false;
-    }, 600); // Jump duration
+      setTimeout(() => {
+        isJumping = false;
+      }, 300); // Wait for fall animation
+    }, 300); // Jump duration (up)
   }
 });
