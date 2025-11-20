@@ -58,23 +58,49 @@ function gameLoop() {
     }
 
     // Collision Detection
-    // Simple box collision
+    // Circle Collision (Distance Check)
     const charRect = character.getBoundingClientRect();
     const obsRect = obs.element.getBoundingClientRect();
 
-    // Shrink hitboxes slightly for better feel
-    // Increased buffer to 30px/20px to ignore empty space in SVG
-    if (
-      charRect.right > obsRect.left + 30 &&
-      charRect.left < obsRect.right - 30 &&
-      charRect.bottom > obsRect.top + 20 &&
-      charRect.top < obsRect.bottom - 20
-    ) {
+    // Calculate centers
+    const charCenterX = charRect.left + charRect.width / 2;
+    const charCenterY = charRect.top + charRect.height / 2;
+    const obsCenterX = obsRect.left + obsRect.width / 2;
+    const obsCenterY = obsRect.top + obsRect.height / 2;
+
+    // Define radii (adjust these for tightness)
+    const charRadius = 35; // Character radius
+    const obsRadius = 15;  // Obstacle radius (smaller than width/height)
+
+    // Calculate distance
+    const dx = charCenterX - obsCenterX;
+    const dy = charCenterY - obsCenterY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // DEBUG: Visualize Hitbox (Circle)
+    // Remove old debug box if exists
+    const oldDebug = document.getElementById('debug-box');
+    if (oldDebug) oldDebug.remove();
+
+    const debugBox = document.createElement('div');
+    debugBox.id = 'debug-box';
+    debugBox.classList.add('debug-hitbox');
+
+    // Draw debug circle for character
+    debugBox.style.left = (charCenterX - charRadius) + 'px';
+    debugBox.style.top = (charCenterY - charRadius) + 'px';
+    debugBox.style.width = (charRadius * 2) + 'px';
+    debugBox.style.height = (charRadius * 2) + 'px';
+    document.body.appendChild(debugBox);
+
+    // Check collision
+    if (distance < charRadius + obsRadius) {
       alert('Game Over!');
       // Reset game
       obstacles.forEach(o => o.element.remove());
       obstacles = [];
       spawnTimer = 0;
+      if (debugBox) debugBox.remove();
     }
   }
 
