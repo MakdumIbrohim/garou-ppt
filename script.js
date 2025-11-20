@@ -126,7 +126,7 @@ function gameLoop(timestamp) {
   }
 
   cloudTimer += dt;
-  if (cloudTimer > 3.3) {
+  if (cloudTimer > 1.0) {
     spawnCloud();
     cloudTimer = 0;
   }
