@@ -9,6 +9,7 @@ body {
   position: relative;
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
 }
 
 #character {
@@ -84,6 +85,36 @@ body {
   transform: rotate(20deg);
   transform-origin: bottom left;
   z-index: 5;
+}
+
+.cloud {
+  position: absolute;
+  background: white;
+  border-radius: 50px;
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.cloud::after {
+  content: '';
+  position: absolute;
+  background: white;
+  width: 50%;
+  height: 100%;
+  top: -40%;
+  left: 15%;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  content: '';
+  position: absolute;
+  background: white;
+  width: 40%;
+  height: 100%;
+  top: -20%;
+  right: 15%;
+  border-radius: 50%;
 }
 
 @media (max-width: 768px) {
