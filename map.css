@@ -86,15 +86,6 @@ body {
   z-index: 5;
 }
 
-.debug-hitbox {
-  position: absolute;
-  border: 2px solid blue;
-  background-color: rgba(0, 0, 255, 0.3);
-  pointer-events: none;
-  z-index: 100;
-  border-radius: 50%;
-}
-
 @media (max-width: 768px) {
   .jump-btn {
     padding: 8px;
