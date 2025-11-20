@@ -76,6 +76,16 @@ body {
   right: 0;
 }
 
+.cactus {
+  position: absolute;
+  width: 30px;
+  height: 50px;
+  background-color: red;
+  transform: rotate(20deg);
+  transform-origin: bottom left;
+  z-index: 5;
+}
+
 @media (max-width: 768px) {
   .jump-btn {
     padding: 8px;
