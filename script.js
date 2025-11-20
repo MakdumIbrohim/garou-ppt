@@ -1,7 +1,9 @@
+// Konstanta elemen DOM
 const characterEl = document.getElementById("character");
 const jumpButton = document.getElementById("jump-button");
 const gameArea = document.getElementById("game-area");
 
+// Konstanta fisika permainan
 const SLOPE_ANGLE_DEG = 20;
 const SLOPE_TAN = Math.tan((SLOPE_ANGLE_DEG * Math.PI) / 180);
 
@@ -12,6 +14,7 @@ const GROUND_BASE = 300;
 
 const OBSTACLE_SPEED = 200;
 
+// Variabel state permainan
 let isJumping = false;
 let obstacles = [];
 let clouds = [];
@@ -21,6 +24,7 @@ let cloudTimer = 0;
 let lastTimestamp = null;
 
 const char = {
+// Objek karakter
   x: 100,
   yOffset: 0,
   vy: 0,
@@ -31,6 +35,7 @@ const char = {
 characterEl.style.left = char.x + "px";
 const initialVertical = char.x * SLOPE_TAN;
 characterEl.style.bottom = GROUND_BASE - initialVertical + char.yOffset + "px";
+// Fungsi spawn rintangan
 
 function spawnObstacle() {
   const obstacle = document.createElement("div");
@@ -44,6 +49,7 @@ function spawnObstacle() {
 
   gameArea.appendChild(obstacle);
   obstacles.push({ element: obstacle, left: startLeft });
+// Fungsi spawn awan
 }
 
 function spawnCloud() {
@@ -62,6 +68,7 @@ function spawnCloud() {
   const speedMult = 0.2 + Math.random() * 0.3;
   gameArea.appendChild(cloud);
   clouds.push({ element: cloud, left: startLeft, speed: speedMult });
+// Fungsi suara lompat
 }
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -87,6 +94,7 @@ function playJumpSound() {
     oscillator.stop(audioCtx.currentTime + 0.12);
   } catch (e) {
     console.warn("Audio error:", e);
+// Fungsi mulai lompat
   }
 }
 
@@ -100,6 +108,7 @@ function startJump() {
 jumpButton.addEventListener("click", startJump);
 window.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
+// Loop utama permainan
     e.preventDefault();
     startJump();
   }
@@ -122,6 +131,7 @@ function gameLoop(timestamp) {
     cloudTimer = 0;
   }
 
+// Gerakkan awan
   for (let i = clouds.length - 1; i >= 0; i--) {
     const cloud = clouds[i];
     cloud.left -= OBSTACLE_SPEED * cloud.speed * dt;
@@ -132,6 +142,7 @@ function gameLoop(timestamp) {
     }
   }
 
+// Fisika lompatan
   if (isJumping) {
     char.vy += GRAVITY * dt;
     char.yOffset += char.vy * dt;
@@ -148,6 +159,7 @@ function gameLoop(timestamp) {
   characterEl.style.left = char.x + "px";
   const baseBottom = GROUND_BASE - char.x * SLOPE_TAN;
   characterEl.style.bottom = baseBottom + char.yOffset + "px";
+// Gerakkan rintangan dan deteksi tabrakan
 
   for (let i = obstacles.length - 1; i >= 0; i--) {
     const obs = obstacles[i];
@@ -176,6 +188,7 @@ function gameLoop(timestamp) {
 
     const dx = charCenterX - obsCenterX;
     const dy = charCenterY - obsCenterY;
+// Deteksi tabrakan
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     if (distance < charRadius + obsRadius) {
@@ -194,6 +207,7 @@ function gameLoop(timestamp) {
       return;
     }
   }
+// Mulai permainan
 
   requestAnimationFrame(gameLoop);
 }
