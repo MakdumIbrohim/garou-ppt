@@ -63,11 +63,12 @@ function gameLoop() {
     const obsRect = obs.element.getBoundingClientRect();
 
     // Shrink hitboxes slightly for better feel
+    // Increased buffer to 30px/20px to ignore empty space in SVG
     if (
-      charRect.right > obsRect.left + 10 &&
-      charRect.left < obsRect.right - 10 &&
-      charRect.bottom > obsRect.top + 10 &&
-      charRect.top < obsRect.bottom - 10
+      charRect.right > obsRect.left + 30 &&
+      charRect.left < obsRect.right - 30 &&
+      charRect.bottom > obsRect.top + 20 &&
+      charRect.top < obsRect.bottom - 20
     ) {
       alert('Game Over!');
       // Reset game
