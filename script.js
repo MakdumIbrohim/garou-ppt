@@ -56,12 +56,13 @@ function spawnCloud() {
   const cloud = document.createElement("div");
   cloud.classList.add("cloud");
 
-  const scale = 0.5 + Math.random() * 1;
+  const isMobile = window.innerWidth < 768;
+  const scale = isMobile ? 0.3 + Math.random() * 0.5 : 0.5 + Math.random() * 1;
   cloud.style.width = 100 * scale + "px";
   cloud.style.height = 40 * scale + "px";
 
   let startLeft = window.innerWidth + 100;
-  let startTop = Math.random() * (window.innerHeight / 2);
+  let startTop = Math.random() * (isMobile ? Math.min(window.innerHeight / 4, 150) : window.innerHeight / 2);
   cloud.style.left = startLeft + "px";
   cloud.style.top = startTop + "px";
 
