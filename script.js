@@ -205,7 +205,7 @@ function gameLoop(timestamp) {
       characterEl.style.left = char.x + "px";
       const baseBottom = GROUND_BASE - char.x * SLOPE_TAN;
       characterEl.style.bottom = baseBottom + char.yOffset + "px";
-      return;
+      // Continue the game loop after reset
     }
   }
 // Mulai permainan
