@@ -24,7 +24,7 @@ let cloudTimer = 0;
 let lastTimestamp = null;
 
 const char = {
-// Objek karakter
+  // Objek karakter
   x: 100,
   yOffset: 0,
   vy: 0,
@@ -49,7 +49,7 @@ function spawnObstacle() {
 
   gameArea.appendChild(obstacle);
   obstacles.push({ element: obstacle, left: startLeft });
-// Fungsi spawn awan
+  // Fungsi spawn awan
 }
 
 function spawnCloud() {
@@ -62,14 +62,16 @@ function spawnCloud() {
   cloud.style.height = 40 * scale + "px";
 
   let startLeft = window.innerWidth + 100;
-  let startTop = Math.random() * (isMobile ? Math.min(window.innerHeight / 4, 150) : window.innerHeight / 2);
+  let startTop =
+    Math.random() *
+    (isMobile ? Math.min(window.innerHeight / 4, 150) : window.innerHeight / 2);
   cloud.style.left = startLeft + "px";
   cloud.style.top = startTop + "px";
 
   const speedMult = 0.2 + Math.random() * 0.3;
   gameArea.appendChild(cloud);
   clouds.push({ element: cloud, left: startLeft, speed: speedMult });
-// Fungsi suara lompat
+  // Fungsi suara lompat
 }
 
 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -95,7 +97,7 @@ function playJumpSound() {
     oscillator.stop(audioCtx.currentTime + 0.12);
   } catch (e) {
     console.warn("Audio error:", e);
-// Fungsi mulai lompat
+    // Fungsi mulai lompat
   }
 }
 
@@ -109,7 +111,7 @@ function startJump() {
 jumpButton.addEventListener("click", startJump);
 window.addEventListener("keydown", (e) => {
   if (e.code === "Space") {
-// Loop utama permainan
+    // Loop utama permainan
     e.preventDefault();
     startJump();
   }
@@ -132,7 +134,7 @@ function gameLoop(timestamp) {
     cloudTimer = 0;
   }
 
-// Gerakkan awan
+  // Gerakkan awan
   for (let i = clouds.length - 1; i >= 0; i--) {
     const cloud = clouds[i];
     cloud.left -= OBSTACLE_SPEED * cloud.speed * dt;
@@ -157,7 +159,7 @@ function gameLoop(timestamp) {
   characterEl.style.left = char.x + "px";
   const baseBottom = GROUND_BASE - char.x * SLOPE_TAN;
   characterEl.style.bottom = baseBottom + char.yOffset + "px";
-// Gerakkan rintangan dan deteksi tabrakan
+  // Gerakkan rintangan dan deteksi tabrakan
 
   for (let i = obstacles.length - 1; i >= 0; i--) {
     const obs = obstacles[i];
@@ -173,42 +175,8 @@ function gameLoop(timestamp) {
       continue;
     }
 
-    const charRect = characterEl.getBoundingClientRect();
-    const obsRect = obs.element.getBoundingClientRect();
-
-    const charCenterX = charRect.left + charRect.width / 2;
-    const charCenterY = charRect.top + charRect.height / 2;
-    const obsCenterX = obsRect.left + obsRect.width / 2;
-    const obsCenterY = obsRect.top + obsRect.height / 2;
-
-    const charRadius = Math.min(charRect.width, charRect.height) * 0.35;
-    const obsRadius = Math.min(obsRect.width, obsRect.height) * 0.45;
-
-    const dx = charCenterX - obsCenterX;
-    const dy = charCenterY - obsCenterY;
-// Deteksi tabrakan
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < charRadius + obsRadius) {
-      alert("Game Over!");
-      obstacles.forEach((o) => o.element.remove());
-      obstacles = [];
-      clouds.forEach((c) => c.element.remove());
-      clouds = [];
-      char.x = 100;
-      char.yOffset = 0;
-      char.vy = 0;
-      isJumping = false;
-      lastTimestamp = null;
-      spawnTimer = 0;
-      cloudTimer = 0;
-      characterEl.style.left = char.x + "px";
-      const baseBottom = GROUND_BASE - char.x * SLOPE_TAN;
-      characterEl.style.bottom = baseBottom + char.yOffset + "px";
-      // Continue the game loop after reset
-    }
   }
-// Mulai permainan
+  // Mulai permainan
 
   requestAnimationFrame(gameLoop);
 }
