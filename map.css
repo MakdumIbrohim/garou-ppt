@@ -153,8 +153,9 @@ body {
 
   #obstacle {
     width: 120vw;
-    height: 120vh;
-    top: 7000px;
+    height: 50vh;
+    top: 400px;
+    transform: none;
   }
 
   .cloud {
