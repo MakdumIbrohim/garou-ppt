@@ -10,7 +10,7 @@ const SLOPE_TAN = Math.tan((SLOPE_ANGLE_DEG * Math.PI) / 180);
 const GRAVITY = -2000;
 const JUMP_VELOCITY = 900;
 const HORIZ_JUMP_SPEED = 100;
-const GROUND_BASE = window.innerWidth < 768 ? 250 : 300;
+const GROUND_BASE = window.innerWidth < 768 ? 350 : 300;
 
 const OBSTACLE_SPEED = 200;
 
